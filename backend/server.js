@@ -4,6 +4,7 @@ const socketIo = require('socket.io');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const { generateAlias } = require('./anonymousGenerator.js');
 
 const PORT = 8080;
 
@@ -46,18 +47,30 @@ app.post('/queue', (req, res) => {
         return res.status(403).send({ message: "User does not have the required role" });
     }
 
-    if (userQueue.includes(userId)) {
+    const isUserInQueue = userQueue.some(queueItem => queueItem.userId === userId);
+    if (isUserInQueue) {
         return res.status(409).send({ message: "User ID is already in the queue" });
     }
 
-    userQueue.push(userId);
+    let anonymousName;
+    let isNameUnique = false;
+    while (!isNameUnique) {
+        anonymousName = generateAlias();
+        isNameUnique = !userQueue.some(queueItem => queueItem.anonymousName === anonymousName);
+    }
+
+    const queueObject = { anonymousName, userId };
+
+    userQueue.push(queueObject);
     io.emit('queue-updated', userQueue);
     res.status(201).send({ message: "User added to queue", queue: userQueue });
 });
 
 app.delete('/queue/:userId', (req, res) => {
     const { userId } = req.params;
-    userQueue = userQueue.filter(id => id !== userId);
+    
+    userQueue = userQueue.filter(queueItem => queueItem.userId !== userId);
+    
     io.emit('queue-updated', userQueue);
     res.send({ message: "User removed from queue", queue: userQueue });
 });

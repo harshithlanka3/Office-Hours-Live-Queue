@@ -26,12 +26,15 @@ function updateQueue(queue) {
     queueElement.innerHTML = '<h2>Current Queue:</h2>';
     if (queue.length > 0) {
         const list = document.createElement('ul');
-        queue.forEach(userId => {
+        queue.forEach(queueObject => {
             const item = document.createElement('li');
-            item.textContent = userId;
+            item.textContent = queueObject.anonymousName;
+            
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Remove';
-            removeButton.onclick = () => removeUserFromQueue(userId);
+            removeButton.setAttribute('data-user-id', queueObject.userId);
+            removeButton.onclick = () => removeUserFromQueue(queueObject.userId);
+            
             item.appendChild(removeButton);
             list.appendChild(item);
         });
