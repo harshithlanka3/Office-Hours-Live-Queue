@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Management</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+    <script defer src="app.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #queue { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Queue Management</h1>
+    <input type="text" id="userId" placeholder="Enter user ID">
+    <button onclick="addUserToQueue()">Join Queue</button>
+    <button onclick="clearQueue()">Clear Queue</button>
+    <div id="queue"></div>
+</body>
+</html>
