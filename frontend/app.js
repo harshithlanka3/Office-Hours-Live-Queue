@@ -27,12 +27,13 @@ function updateQueue(queue) {
     if (queue.length > 0) {
         const list = document.createElement('ul');
         queue.forEach(queueObject => {
+            queueObject = JSON.parse(queueObject);
             const item = document.createElement('li');
-            item.textContent = queueObject.anonymousName;
+            item.textContent = queueObject.alias;
+            item.setAttribute('data-user-id', queueObject.userId);
             
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Remove';
-            removeButton.setAttribute('data-user-id', queueObject.userId);
             removeButton.onclick = () => removeUserFromQueue(queueObject.userId);
             
             item.appendChild(removeButton);
@@ -49,6 +50,7 @@ socket.on('queue-updated', queue => {
 });
 
 function removeUserFromQueue(userId) {
+    console.log(userId);
     fetch(`http://localhost:8080/queue/${userId}`, {
         method: 'DELETE'
     }).then(response => response.json())

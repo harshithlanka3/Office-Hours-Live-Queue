@@ -1,12 +1,50 @@
 {
     "903703988": {
         "name": "Harshith Lanka",
-        "role": 0,
-        "image": "harshith_lanka.png"
-    }, 
-
+        "role": 0
+    },
     "903703825": {
         "name": "Test Student",
         "role": 1
+    },
+    "903704001": {
+        "name": "Jane Doe",
+        "role": 1
+    },
+    "903704002": {
+        "name": "John Smith",
+        "role": 0
+    },
+    "903704003": {
+        "name": "Alice Johnson",
+        "role": 1
+    },
+    "903704004": {
+        "name": "Bob Brown",
+        "role": 0
+    },
+    "903704005": {
+        "name": "Charlie Davis",
+        "role": 1
+    },
+    "903704006": {
+        "name": "Diana Evans",
+        "role": 0
+    },
+    "903704007": {
+        "name": "Evan Greene",
+        "role": 1
+    },
+    "903704008": {
+        "name": "Fiona Hill",
+        "role": 0
+    },
+    "903704009": {
+        "name": "George King",
+        "role": 1
+    },
+    "903704010": {
+        "name": "Hannah Lee",
+        "role": 0
     }
 }
